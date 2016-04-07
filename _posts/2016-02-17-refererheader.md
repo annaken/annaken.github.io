@@ -15,19 +15,11 @@ That is, if the origin of the request was https, the referer header should not b
 
 However, RFCs are not mandatory, and data is sometimes leaked. 
 Facebook fell foul of this a little while ago, when it turned out that in some cases the userid of the originating page was being passed in the referer header to advertisers when a user clicked on an advert. 
-Their solution was to implement the meta-referrer tag instead. 
+Their solution was to implement the [meta-referrer tag instead.](https://www.facebook.com/notes/facebook-engineering/protecting-privacy-with-referrers/392382738919)
 
-	https://www.facebook.com/notes/facebook-engineering/protecting-privacy-with-referrers/392382738919
+The [meta-referrer tag](http://wiki.whatwg.org/wiki/Meta_referrer) can edit the referer header to allow sites to see where their traffic has come from, but without leaking potentially sensitive data.
 
-The meta-referrer tag can edit the referer header to allow sites to see where their traffic has come from, but without leaking potentially sensitive data.
-
-	http://wiki.whatwg.org/wiki/Meta_referrer
-
-Google were the first to implement such a scheme
-
-	http://googlewebmastercentral.blogspot.co.uk/2012/03/upcoming-changes-inyy-googles-http.html
-
-ostensibly to reducy latency from ssl sites, although one would suspect that being able to prove to clients that your site was the source of their traffic would be a more persuasive business argument.
+Google were the first to [implement such a scheme](http://googlewebmastercentral.blogspot.co.uk/2012/03/upcoming-changes-inyy-googles-http.html), ostensibly to reducy latency from ssl sites, although one would suspect that being able to prove to clients that your site was the source of their traffic would be a more persuasive business argument.
 
 The meta-referrer tag can take one of four values:
 
@@ -66,16 +58,16 @@ Empty when:
 References
 ----------
 
-	http://www.w3.org/Protocols/rfc2616/rfc2616-sec15.html
+http://www.w3.org/Protocols/rfc2616/rfc2616-sec15.html
 
-	http://wiki.whatwg.org/wiki/Meta_referrer
+http://wiki.whatwg.org/wiki/Meta_referrer
 
-	http://www.schemehostport.com/2011/11/referer-sic.html
+http://www.schemehostport.com/2011/11/referer-sic.html
 
-	https://www.facebook.com/notes/facebook-engineering/protecting-privacy-with-referrers/392382738919
+https://www.facebook.com/notes/facebook-engineering/protecting-privacy-with-referrers/392382738919
 
-	http://smerity.com/articles/2013/where_did_all_the_http_referrers_go.html
+http://smerity.com/articles/2013/where_did_all_the_http_referrers_go.html
 
-	http://googlewebmastercentral.blogspot.co.uk/2012/03/upcoming-changes-inyy-googles-http.html
+http://googlewebmastercentral.blogspot.co.uk/2012/03/upcoming-changes-inyy-googles-http.html
 
-	https://bugzilla.mozilla.org/show_bug.cgi?id=704320
+https://bugzilla.mozilla.org/show_bug.cgi?id=704320
