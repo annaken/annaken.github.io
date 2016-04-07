@@ -6,3 +6,4 @@
 name: Anna Kennedy
 github_username:  annaken
 markdown: kramdown
+excerpt_separator: <!--more-->

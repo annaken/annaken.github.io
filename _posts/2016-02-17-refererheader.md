@@ -4,7 +4,7 @@ title:  "A brief history of the referer header"
 date:   2016-02-17 11:22:33 +0200
 ---
 
-The referer header. Misspelled and misused since its inception. 
+The referer header. Misspelled and misused since its inception.<!--more--> 
 Its typical use is thus: if I click on a link in a webpage that takes me to a different page, the referer header shows the landing page which page I came from. 
 It's very useful for gathering statistics about reading habits, but also presents a potential security risk, if too much information is passed on. 
 
