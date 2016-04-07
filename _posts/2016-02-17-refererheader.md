@@ -8,9 +8,10 @@ The referer header. Misspelled and misused since its inception.
 Its typical use is thus: if I click on a link in a webpage that takes me to a different page, the referer header shows the landing page which page I came from. 
 It's very useful for gathering statistics about reading habits, but also presents a potential security risk, if too much information is passed on. 
 
-In the original RFC (2616), the specification lays out that
+In the original [RFC (2616)](http://www.w3.org/Protocols/rfc2616/rfc2616-sec15.html), the specification lays out that
 
-"Clients SHOULD NOT include a Referer header field in a (non-secure) HTTP request if the referring page was transferred with a secure protocol"
+> "Clients SHOULD NOT include a Referer header field in a (non-secure) HTTP request if the referring page was transferred with a secure protocol"
+
 That is, if the origin of the request was https, the referer header should not be present.
 
 However, RFCs are not mandatory, and data is sometimes leaked. 
