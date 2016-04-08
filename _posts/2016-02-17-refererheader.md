@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "A brief history of the referer header"
+tage:   [technical]
 date:   2016-02-17 11:22:33 +0200
 ---
 
