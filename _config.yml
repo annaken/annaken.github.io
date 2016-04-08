@@ -1,10 +1,10 @@
 title:            annaken
-description:      "annaken's blog: infrastructure engineer and professional chaos monkey"
+description:      annaken
 name:             Anna Kennedy
 github_username:  annaken
 
-logo:             site-logo.png
-disqus_shortname: shortname
+logo:             
+disqus_shortname: 
 
 # Assign a default image for your site's header and footer
 default_bg:       some-image.jpg
