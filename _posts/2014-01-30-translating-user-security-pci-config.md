@@ -26,10 +26,10 @@ and this will generate an entry in the config file found at /etc/pam.d/common-pa
     password requisite pam_cracklib.so retry=3 minlen=11 lcredit=1 ucredit=1 dcredit=1 ocredit=1
 What we're interested in here is primarily minlen - but it's not exactly the minumum length of the password as you might expect. Rather, it's a total of the number of characters in the password, plus scores from lcredit, ucredit, dcredit and ocredit, where the parameters mean
 
-lcredit | maximum credit allowed from required lower-case characters
-ucredit | number of required upper-case characters
-dcredit | number of required digits
-ocredit | number of required other characters (non-alphanumeric)
+* lcredit = maximum credit allowed from required lower-case characters
+* ucredit = number of required upper-case characters
+* dcredit = number of required digits
+* ocredit = number of required other characters (non-alphanumeric)
 
 So, if we have the requirement of 8 or more characters including numbers, and upper and lowercase letters, then we can set lcredit, ucredit, and dcredit all to 1, and require minlen = (8+1+1+1) = 11 to ensure this policy is enforced.
 
