@@ -62,11 +62,7 @@ For this one, we need to install fail2ban (apt-get install fail2ban), and then c
 
 
 References:
-
-http://www.deer-run.com/~hal/sysadmin/pam_cracklib.html
-
-http://www.cyberciti.biz/tips/how-to-linux-prevent-the-reuse-of-old-passwords.html
-
-http://www.cyberciti.biz/tips/linux-check-passwords-against-a-dictionary-attack.html
-
-https://www.digitalocean.com/community/articles/how-to-protect-ssh-with-fail2ban-on-ubuntu-12-04
+* http://www.deer-run.com/~hal/sysadmin/pam_cracklib.html
+* http://www.cyberciti.biz/tips/how-to-linux-prevent-the-reuse-of-old-passwords.html
+* http://www.cyberciti.biz/tips/linux-check-passwords-against-a-dictionary-attack.html
+* https://www.digitalocean.com/community/articles/how-to-protect-ssh-with-fail2ban-on-ubuntu-12-04
