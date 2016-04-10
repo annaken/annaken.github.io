@@ -5,20 +5,20 @@ tage:   [technical, vagrant, centos]
 date:   2014-07-23
 ---
 
-I've been using Vagrant for a while, but I recently decided to start making my own base boxes for various reasons (curiosity and paranoia mainly). My Debian base box pretty much 'just worked' thanks to some nice instructions here.
-
-However my CentOS (6.5) base box proved a little trickier. This how I eventually got it working.
+I've been using Vagrant for a while, but I recently decided to start making my own base boxes for various reasons (curiosity and paranoia mainly). My Debian base box pretty much 'just worked' thanks to some nice instructions here. However my CentOS (6.5) base box proved a little trickier. This how I eventually got it working.
 
 
 ## Make the VM in VirtualBox
 
-In setup wizard
+
+In setup wizard:
 
 * Name: whatever takes your fancy
 * RAM: we can set this small, say 512MB, and increase it later
 * Hard disk: VMDK, dynamically allocated, again start small, say 10GB
 
-In settings
+
+In settings: 
 
 * CPUs: give it a couple if you have the resources
 * Disable audio and USB
