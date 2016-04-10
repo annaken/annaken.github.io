@@ -177,12 +177,8 @@ In particular, check the output of ifconfig and be sure that lo, eth0 and eth1 a
 
 ### References
 
-http://williamwalker.me/blog/creating-a-custom-vagrant-box.html
-
-https://docs.vagrantup.com/v2/boxes/base.html
-
-http://wiki.centos.org/HowTos/Virtualization/VirtualBox/CentOSguest
-
-http://thornelabs.net/2013/11/11/create-a-centos-6-vagrant-base-box-from-scratch-using-virtualbox.html
-
-https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux_OpenStack_Platform/3/html/Installation_and_Configuration_Guide/Disabling_Network_Manager.html
+| http://williamwalker.me/blog/creating-a-custom-vagrant-box.html
+| https://docs.vagrantup.com/v2/boxes/base.html
+| http://wiki.centos.org/HowTos/Virtualization/VirtualBox/CentOSguest
+| http://thornelabs.net/2013/11/11/create-a-centos-6-vagrant-base-box-from-scratch-using-virtualbox.html
+| https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux_OpenStack_Platform/3/html/Installation_and_Configuration_Guide/Disabling_Network_Manager.html
