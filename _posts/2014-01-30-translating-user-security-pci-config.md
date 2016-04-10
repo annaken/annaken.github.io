@@ -43,13 +43,13 @@ Aha, an easy one. In `/etc/login.defs` , set
 
 Also straightforwards. In `/etc/default/useradd` , set
 
-  INACTIVE=90
+    INACTIVE=90
 
 > "Sessions timeout after 15 mins inactivity"
 
 Within `/etc/bash.bashrc`, set
 
-  export TMOUT=900
+    export TMOUT=900
 
 > "Account locks out for 30 mins after 6 failed login attempts"
 
