@@ -89,6 +89,7 @@ I got some errors to begin with; these were fixed by doing this patch for 6.5
 Download the standard vagrant public key
 
     $ wget --no-check-certificate https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub
+
 Save it to .ssh/authorized_keys and make sure the appropriate permissions are set:
 
 * 700 for .ssh
@@ -110,7 +111,7 @@ This is where I started to run into difficulties. No matter what I set in my ifc
 
 I could probably have coped with the automatically assigned ip address, but it was a matter of principle, plus it annoyed me to have some of my VMs on different subnets.
 
-What it turned out to be was, since I'd installed the OS using a GUI, CentOS had automagically set NetworkManager to 'on' and 'network' to 'off'. (chkconfig --list | grep etwork). This has the effect of disregarding anything set in /etc/sysconfig/network-scripts/.
+What it turned out to be was, since I'd installed the OS using a GUI, CentOS had automagically set NetworkManager to 'on' and 'network' to 'off'. `(chkconfig --list | grep etwork)`. This has the effect of disregarding anything set in `/etc/sysconfig/network-scripts/`.
 
 To get things back to the way I like them, I did:
 
