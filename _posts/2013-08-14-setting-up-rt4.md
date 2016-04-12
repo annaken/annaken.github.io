@@ -156,18 +156,19 @@ Test that a given user can access / not access the various pages as appropriate.
 ## LDAP Authentication
 
 To authenticate users against LDAP, the Apache config needs tweaking as follows:
+
     <Location />
       SetHandler modperl
       PerlResponseHandler Plack::Handler::Apache2
       PerlSetVar psgi_app /usr/share/request-tracker4/libexec/rt-server
       AuthType Basic
       Require valid-user
-
-  # Comment out the htpasswd section
-  #    AuthName "Restricted Resource"
-  #    AuthUserFile /etc/apache2/htpasswd
-
-  # Replace it with LDAP authentication
+    
+    # Comment out the htpasswd section
+    #    AuthName "Restricted Resource"
+    #    AuthUserFile /etc/apache2/htpasswd
+    
+    # Replace it with LDAP authentication
       AuthName "company.com AD"
       AuthBasicProvider ldap
       AuthzLDAPAuthoritative off
@@ -175,7 +176,6 @@ To authenticate users against LDAP, the Apache config needs tweaking as follows:
       AuthLDAPBindDN "CN=apache,CN=Users,dc=company,dc=com"
       AuthLDAPBindPassword "your password here................"
       AuthLDAPURL "ldap://dc.company.com:389/CN=Users,DC=company,DC=com?mail?sub?(objectClass=*)"
-
     </Location>
 
 The advantage to using LDAP over htpasswd is that (a) if you have more than a couple of users to add it's much faster and (b) if LDAP-authenticated users email a ticket to RT their user profile will be automatically set up.
