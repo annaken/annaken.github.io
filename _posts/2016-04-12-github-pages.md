@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Hosting a reveal.js presentation on github pages"
-tage:   [technical, github]
+tags:   [technical, github, presentation]
 date:   2016-04-12
 ---
 

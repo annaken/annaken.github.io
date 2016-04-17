@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Translating user security for PCI compliance into configs"
-tage:   [technical, config management, security, automation]
+tags:   [technical, config management, security, automation]
 date:   2014-01-30
 ---
 

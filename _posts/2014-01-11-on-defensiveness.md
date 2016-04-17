@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "On defensiveness"
-tage:   [technical, essay]
+tags:   [technical, essay]
 date:   2014-01-11
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "A practical introduction to git"
-tage:   [technical, git, course, teaching, gitlab]
+tags:   [technical, git, course, teaching, gitlab, version control]
 date:   2016-04-08
 ---
 

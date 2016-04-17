@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Version control: the basics in 5 minutes"
-tage:   [technical, git]
+tags:   [technical, git, version control]
 date:   2014-11-21
 ---
 

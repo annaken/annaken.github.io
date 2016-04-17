@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Setting up Request Tracker 4"
-tage:   [technical, request tracker, exim]
+tags:   [technical, request tracker, exim]
 date:   2013-08-14
 ---
 

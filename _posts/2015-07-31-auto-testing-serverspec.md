@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Automated server testing with Serverspec, output for Logstash, results in Kibana"
-tage:   [technical]
+tags:   [technical, serverspec, logstash, kibana, automation, config management, testing]
 date:   2015-07-31 
 ---
 

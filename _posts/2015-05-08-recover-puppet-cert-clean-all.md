@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Recovering from puppet cert clean --all"
-tage:   [technical, puppet]
+tags:   [technical, puppet, automation, config management]
 date:   2015-05-08
 ---
 

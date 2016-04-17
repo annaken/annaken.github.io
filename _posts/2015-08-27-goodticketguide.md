@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Good ticket guide"
-tage:   [technical]
+tags:   [technical, operations]
 date:   2015-08-27 11:22:33 +0200
 ---
 

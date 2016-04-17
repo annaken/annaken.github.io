@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Creating a CentOS base box for Vagrant"
-tage:   [technical, vagrant, centos]
+tags:   [technical, vagrant, centos]
 date:   2014-07-23
 ---
 

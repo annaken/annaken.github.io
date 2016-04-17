@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Puppet in the Pipeline: video and slides"
-tags: [talks]
+tags: [talks, puppet, config management, automation, pipeline, continuous delivery]
 modified:   2015-12-08 11:44:09 +0200
 ---
 
