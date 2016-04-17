@@ -56,19 +56,19 @@ links:
     url: /
     external: false
     icon: home
-  - title: Categories
-    url: /categories
+  - title: Tags
+    url: /tags
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 timezone:    Europe/Oslo
 future:      true
 pygments:    true
 markdown:    kramdown
-paginate:    6
+paginate:    5
 paginate_path: "page:num"
 
 # https://github.com/mojombo/jekyll/wiki/Permalinks
-permalink:   /:categories/:title
+permalink:   /:title
 
 kramdown:
   auto_ids: true
