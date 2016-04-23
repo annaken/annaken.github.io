@@ -58,6 +58,8 @@ links:
     icon: home
   - title: Tags
     url: /tags
+  - title: All posts
+    url: /allposts
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 timezone:    Europe/Oslo
