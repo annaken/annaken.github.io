@@ -33,15 +33,15 @@ owner:
   description:    Infrastructure engineer and professional chaos monkey
 
   # Social networking links used in footer. Update and remove as you like.
-  twitter:
+  twitter:  https://twitter.com/anna_ken_
   facebook:
-  github:
+  github:   https://github.com/annaken
   linkedin:
   instagram:
   tumblr:
   hmfaysalsocial:
   # For Google Authorship https://plus.google.com/authorship "http://plus.google.com/123123123123132123"
-  google_plus:   
+  google_plus:   https://plus.google.com/u/0/+AnnaKennedy
 
 # Analytics and webmaster tools stuff goes here
 google_analytics:
