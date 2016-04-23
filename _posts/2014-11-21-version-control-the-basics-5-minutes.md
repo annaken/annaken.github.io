@@ -3,6 +3,7 @@ layout: post
 title:  "Version control: the basics in 5 minutes"
 tags:   [technical, git, version control]
 date:   2014-11-21
+comments: true
 ---
 
 _So, everyone keeps talking to me about this version control thing. What's the beef?_

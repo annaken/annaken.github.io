@@ -3,6 +3,7 @@ layout: post
 title:  "Setting up Request Tracker 4"
 tags:   [technical, request tracker, exim]
 date:   2013-08-14
+comments: true
 ---
 
 Request-Tracker 4 is a powerful ticketing system but setting it up and making it work was a bit of an epic task. 

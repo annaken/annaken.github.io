@@ -3,6 +3,7 @@ layout: post
 title:  "Creating a CentOS base box for Vagrant"
 tags:   [technical, vagrant, centos]
 date:   2014-07-23
+comments: true
 ---
 
 I've been using Vagrant for a while, but I recently decided to start making my own base boxes for various reasons (curiosity and paranoia mainly). My Debian base box pretty much 'just worked' thanks to some nice instructions here. However my CentOS (6.5) base box proved a little trickier. This how I eventually got it working.

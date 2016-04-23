@@ -3,6 +3,7 @@ layout: post
 title:  "Puppet in the Pipeline: video and slides"
 tags: [talks, puppet, config management, automation, pipeline, continuous delivery]
 date:   2015-12-08
+comments: true
 ---
 
 I gave a talk at the recent PuppetConf called "Puppet in the Pipeline" - a round up of workflow planning, deployment pipelines, and integration points. <!--more-->

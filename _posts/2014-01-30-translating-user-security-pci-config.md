@@ -3,6 +3,7 @@ layout: post
 title:  "Translating user security for PCI compliance into configs"
 tags:   [technical, config management, security, automation]
 date:   2014-01-30
+comments: true
 ---
 
 As part of our becoming-PCI-compliant project, there are a list of requirements about user security that needed translating from legal-speak into practical actions and ways to implement these actions for our Linux servers. We're using Debian, your mileage may vary.

@@ -3,6 +3,7 @@ layout: post
 title:  "Recovering from puppet cert clean --all"
 tags:   [technical, puppet, automation, config management]
 date:   2015-05-08
+comments: true
 ---
 
 If you just did 'puppet cert clean --all' because reasons and now everything is broken like:

@@ -3,6 +3,7 @@ layout: post
 title:  "On defensiveness"
 tags:   [technical, essay]
 date:   2014-01-11
+comments: true
 ---
 
 We've all been there: you spend hours thinking about the best way to solve a problem, days or weeks setting up the basics and getting something functional working, and then at the moment you demo the prototype to your peers they point out a fatal flaw that you'd somehow overlooked. You're naturally disappointed, having invested time and effort in your project, but you also find yourself angrily fighting your corner, entrenching yourself and not listening. A few hours or days later you have enough clearance from the exchange to look at it objectively and concede that they might have a point. So why did you get so defensive?

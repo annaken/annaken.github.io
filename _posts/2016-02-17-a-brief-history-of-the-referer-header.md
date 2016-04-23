@@ -3,6 +3,7 @@ layout: post
 title:  "A brief history of the referer header"
 tags:   [technical, http, headers, web]
 date:   2016-02-17 11:22:33 +0200
+comments: true
 ---
 
 The referer header. Misspelled and misused since its inception.<!--more--> 

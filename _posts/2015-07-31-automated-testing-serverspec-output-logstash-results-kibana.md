@@ -3,6 +3,7 @@ layout: post
 title:  "Automated server testing with Serverspec, output for Logstash, results in Kibana"
 tags:   [technical, serverspec, logstash, kibana, automation, config management, testing]
 date:   2015-07-31 
+comments: true
 ---
 
 Whether you're spawning VMs to cope with spikes in traffic, or you want to verify your app works on a range of operating systems, it's incredibly useful to have some automated testing to go with your automated VM creation and configuration.
