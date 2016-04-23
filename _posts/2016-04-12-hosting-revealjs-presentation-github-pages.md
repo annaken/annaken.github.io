@@ -3,6 +3,7 @@ layout: post
 title:  "Hosting a reveal.js presentation on github pages"
 tags:   [technical, github, presentation]
 date:   2016-04-12
+comments: true
 ---
 
 Having just written a short git course using reveal.js, I was looking for somewhere to host it online, and I discovered that Github pages worked beautifully.
