@@ -56,7 +56,7 @@ var summer = (function ($) {
 
     // summer javascripts initialization
     init = function () {
-        //indexPostAnimate();
+        indexPostAnimate();
         //$(window).on('scroll', function() {
         //    indexPostAnimate();
         //});
