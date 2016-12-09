@@ -189,7 +189,7 @@ h1, h2, h3, h4, h5, h6 {
       padding-bottom: 12.5rem; } }
 
 .summer-content .summer-index-post {
-  visibility: hidden;
+  visibility: visible;
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
   border-bottom: 0.0625rem solid #d9d9d9; }
@@ -340,8 +340,8 @@ nav.pagination {
   visibility: visible !important; }
 
 @-webkit-keyframes fadeInDown {
-  50% {
-    opacity: 0.5;
+  0% {
+    opacity: 0;
     -webkit-transform: translateY(-20px);
     transform: translateY(-20px); }
 
@@ -350,8 +350,8 @@ nav.pagination {
     -webkit-transform: translateY(0);
     transform: translateY(0); } }
 @keyframes fadeInDown {
-  50% {
-    opacity: 0.5;
+  0% {
+    opacity: 0;
     -webkit-transform: translateY(-20px);
     -ms-transform: translateY(-20px);
     transform: translateY(-20px); }
