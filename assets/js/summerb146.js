@@ -56,10 +56,10 @@ var summer = (function ($) {
 
     // summer javascripts initialization
     init = function () {
-        indexPostAnimate();
-        $(window).on('scroll', function() {
-            indexPostAnimate();
-        });
+        //indexPostAnimate();
+        //$(window).on('scroll', function() {
+        //    indexPostAnimate();
+        //});
         postHeaderCoverImg();
         mobileMenu();
         headerTitlesBackgroundCheck();
