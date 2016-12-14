@@ -14,6 +14,7 @@ Not everything is fully documented, so a bit of creativity is helpful - try doin
 
 Here are a handful of API calls that we needed to do to set Graylog up with a generic message stream, and with some basic users, roles, and LDAP authetication.
 
+
 ## Set up a stream to handle all incoming messages
 
 To capture all messages we'll filter on *timestamp exists*, assuming that all valid messages will have a timestamp.
@@ -75,6 +76,7 @@ Graylog comes with just a couple of roles pre-configured, Admin and Reader. To c
       "read_only": false
     }
 
+
 ## Set up LDAP
 
 For all that this has the most variables to set, this is otherwise straightforwards.
@@ -102,6 +104,7 @@ If you're having a lot of trouble it's often easier to experiment in the UI and 
       "group_search_pattern": ""
     }
 
+
 ## Profit
 
-Go automate!
+There are many, many more endpoints to explore, these were just a few basics to get off the ground.
