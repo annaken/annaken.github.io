@@ -2,7 +2,7 @@
 layout: post
 title:  "Automated server testing with Serverspec, output for Logstash, results in Kibana"
 tags:   [technical, serverspec, logstash, kibana, automation, config management, testing]
-date:   2015-07-31 
+date:   2015-07-31
 comments: true
 ---
 
@@ -14,7 +14,7 @@ Overview:
 
 * Automagically create VMs (AWS, OpenStack, etc)
 * Configure the VMs with some config management tool (Puppet, Chef, etc)
-* Perform functional testing of VMs with Serverspec 
+* Perform functional testing of VMs with Serverspec
 * Output logs that are collected by Logstash
 * Visualise output in Kibana
 
@@ -35,7 +35,7 @@ Install and set up a la the Serverspec documentation
 This will have created you a basic directory structure with some files to get you started. Right now we have:
 
     $ ls /opt/serverspec
-    
+
     Rakefile
       spec/
       spec_helper.rb
@@ -53,7 +53,7 @@ In my opinion, one of the easiest ways to organise the layout for your functiona
 Our ntp Puppet config is found at, and looks like:
 
     $ cat /opt/puppetcode/modules/ntp/manifests/init.pp
-    
+
     class ntp {
       package { 'ntp':
       ensure => installed
@@ -63,7 +63,7 @@ Our ntp Puppet config is found at, and looks like:
 So alongside this directory we can make a sister Serverspec directory, and put our first test in there:
 
     $ cat /opt/puppetcode/modules/ntp/serverspec/init_spec.rb
-    
+
     require 'spec_helper'
     describe package('ntp') do
       it { should be_installed }
@@ -75,23 +75,23 @@ So alongside this directory we can make a sister Serverspec directory, and put o
 Now we need to edit the Rakefile to reflect this restructuring:
 
     $ cat /opt/serverspec/Rakefile
-    
+
     require 'rake'
     require 'rspec/core/rake_task'
-    
-    $host       = 'www.example.com'
-    $modulelist = %w( ntp )
-    
-    task :spec => "spec:#{$host}"
-    
+
+    host       = 'www.example.com'
+    modulelist = %w( ntp )
+
+    task :spec => "spec:#{host}"
+
     namespace :spec do
-      desc "Running serverspec on host #{$host}"
-      RSpec::Core::RakeTask.new($host) do |t|
-        ENV['TARGET_HOST'] = $host
-        t.pattern = '/opt/puppetcode/modules/{' + $modulelist.join(",") + '}/serverspec/*_spec.rb'
+      desc "Running serverspec on host #{host}"
+      RSpec::Core::RakeTask.new(host) do |t|
+        ENV['TARGET_HOST'] = host
+        t.pattern = '/opt/puppetcode/modules/{' + modulelist.join(",") + '}/serverspec/*_spec.rb'
         t.fail_on_error = false
       end
-    end 
+    end
 
 Yes, we did just hard-code the host name and modulelist to test. Don't worry, we'll switch these out in a bit.
 Note that we provide a pattern path with a regex to the directory containing our tests. Essentially when we run this file, we will pick up every test that matches the pattern and run these tests against the desired host.
@@ -102,11 +102,11 @@ Note that we provide a pattern path with a regex to the directory containing our
 Now, making sure we are standing in the /opt/serverspec/ directory, we can run
 
     $ rake spec
-    
+
     Package 'ntp'
       should be installed
 
-Green means that the test ran, and the output was successful. So as it stands, we can test our one www.example.com host with our one ntp test. Great! 
+Green means that the test ran, and the output was successful. So as it stands, we can test our one www.example.com host with our one ntp test. Great!
 
 
 ## Rewrite the Rakefile to take command-line options rather than hard-coding variables
@@ -118,30 +118,26 @@ Right now, our host identifier and our list of modules to test are hard-coded in
     require 'rake'
     require 'rspec/core/rake_task'
 
-    $host       = ENV['host']
-    $modulelist = ENV['modulelist']
+    host       = ENV['host']
+    modulelist = ENV['modulelist']
 
-    task :spec => "spec:#{$host}"
+    task :spec => "spec:#{host}"
 
     namespace :spec do
-      desc "Running serverspec on host #{$host}"
-      RSpec::Core::RakeTask.new($host) do |t|
-        ENV['TARGET_HOST'] = $host
-        t.pattern = '/opt/puppetcode/modules/{' + $modulelist.join(",") + '}/serverspec/*_spec.rb'
+      desc "Running serverspec on host #{host}"
+      RSpec::Core::RakeTask.new(host) do |t|
+        ENV['TARGET_HOST'] = host
+        t.pattern = '/opt/puppetcode/modules/{' + modulelist.join(",") + '}/serverspec/*_spec.rb'
         t.fail_on_error = false
       end
-    end 
+    end
 
-Now to run the tests we need to do 
+Now to run the tests we need to do:
 
-    $ rake spec host=www.example.com modulelist=/opt/serverspec/modulelist
+    $ rake spec host=www.example.com modulelist=ntp
 
-where
+We have a list of just one item right now, but we'll expand on this shortly.
 
-    $ cat /opt/serverspec/modulelist
-      ntp
-
-The modulelist file can be one you write yourself, or generated from something like a server's /var/lib/puppet/classes.txt. It's a way to narrow down what tests are run against each server, as all modules are not necessarily implemented everywhere.
 
 
 ## Manipulating Serverspec output
@@ -151,8 +147,8 @@ Next, we want to look carefully at the output generated by Serverspec so that we
 Serverspec has a number of output options. The 'documentation' style is what we've seen printed to screen so far; there are also json and html reports. It is possible to get all of these formatting options at once by adding the following line to your Rakefile:
 
     t.rspec_opts = "--format documentation --format html \
-      --out /opt/serverspec/reports/#{$host}.html --format json \
-      --out /opt/serverspec/reports/#{$host}.json"
+      --out /opt/serverspec/reports/#{host}.html --format json \
+      --out /opt/serverspec/reports/#{host}.json"
 
 So now we have two files at /opt/serverspec/report: www.example.com.html and www.example.com.json.
 The json file is the one we're going to pick up and turn into our log.
@@ -188,6 +184,9 @@ We're going to pick up every test as a separate json object, insert some identif
 
 Apart from the host and module identifiers, it might also be helpful if we knew, for example, that the OS version of the host was, which git branch it came from, and maybe a UUID unique to a test (which could encompass multiple VMs).
 
+We're also going to switch out our single module name for a file containing a list of modules.
+The modulelist file can be one you write yourself, or generated from something like a server's /var/lib/puppet/classes.txt. It's a way to narrow down what tests are run against each server, as all modules are not necessarily implemented everywhere.
+
 With this in mind, we re-write our /opt/serverspec/Rakefile as follows:
 
     require 'rake'
@@ -195,22 +194,22 @@ With this in mind, we re-write our /opt/serverspec/Rakefile as follows:
     require 'json'
 
     # Command line variables
-    $uuid   = ENV['uuid']
-    $host   = ENV['host']
-    $modulelist = File.readlines(ENV['filename']).map(&:chomp)
-    $branch = ENV['branch']
-    $osrel  = ENV['osrel']
+    uuid   = ENV['uuid']
+    host   = ENV['host']
+    modulelist = File.readlines(ENV['filename']).map(&:chomp)
+    branch = ENV['branch']
+    osrel  = ENV['osrel']
 
-    task :spec => ["spec:#{$host}", "output"]
+    task :spec => ["spec:#{host}", "output"]
 
     # Run the Serverspec tests
     namespace :spec do
-      desc "Running serverspec on host #{$host}"
-      RSpec::Core::RakeTask.new($host) do |t|
-        ENV['TARGET_HOST'] = $host
-        t.pattern = '/opt/puppetcode/modules/{' + $modulelist.join(",") + '}/serverspec/*_spec.rb'
+      desc "Running serverspec on host #{host}"
+      RSpec::Core::RakeTask.new(host) do |t|
+        ENV['TARGET_HOST'] = host
+        t.pattern = '/opt/puppetcode/modules/{' + modulelist.join(",") + '}/serverspec/*_spec.rb'
         t.fail_on_error = false
-        t.rspec_opts = "--format documentation --format html --out /opt/serverspec/reports/#{$host}.html --format json --out /opt/serverspec/reports/#{$host}.json"
+        t.rspec_opts = "--format documentation --format html --out /opt/serverspec/reports/#{host}.html --format json --out /opt/serverspec/reports/#{host}.json"
       end
     end
 
@@ -218,8 +217,8 @@ With this in mind, we re-write our /opt/serverspec/Rakefile as follows:
     task :output do
       File.open("/var/log/serverspec.log","a") do |f|
         # Read in the json file that serverspec wrote
-        ss_json = JSON[File.read("/opt/serverspec2/reports/#{$host}.json")]
-        puts "/opt/serverspec2/reports/#{$host}.json"
+        ss_json = JSON[File.read("/opt/serverspec2/reports/#{host}.json")]
+        puts "/opt/serverspec2/reports/#{host}.json"
         ss_json.each do |key, val|
           if key=='examples'
             val.each { |test|
@@ -236,10 +235,10 @@ With this in mind, we re-write our /opt/serverspec/Rakefile as follows:
     # Add in the rest of our useful data
     def insert_metadata ( json_hash )
       json_hash["time"]   = Time.now.strftime("%Y-%m-%d-%H:%M")
-      json_hash["uuid"]   = $uuid
-      json_hash["hostip"] = $host
-      json_hash["branch"] = $branch
-      json_hash["osrel"]  = $osrel
+      json_hash["uuid"]   = uuid
+      json_hash["hostip"] = host
+      json_hash["branch"] = branch
+      json_hash["osrel"]  = osrel
     end
 
 Now we can run
