@@ -3,7 +3,7 @@ description:      annaken
 name:             Anna Kennedy
 github_username:  annaken
 
-logo:             
+logo:
 disqus_shortname: annaken
 
 # Assign a default image for your site's header and footer
@@ -64,7 +64,8 @@ links:
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 timezone:    Europe/Oslo
 future:      true
-pygments:    true
+pygments:
+highlighter: rouge
 markdown:    kramdown
 paginate:    5
 paginate_path: "page:num"
