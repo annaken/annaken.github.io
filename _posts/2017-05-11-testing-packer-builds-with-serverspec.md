@@ -85,7 +85,7 @@ Serverspec needs to ssh into the instance to run the tests. To this end, in the 
 
 Yeah, so rake only runs if you're standing in the same directory as the Rakefile. There are other ways around this but just copying the contents of my whole servrspec dir was the easiest fix for me.
 
-### egrep -m1 -o '[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}' build.log
+### egrep -m1 -o '[0-9]{1,3}\\\.[0-9]{1,3}\\\.[0-9]{1,3}\\\.[0-9]{1,3}' build.log
 
 Having run the curl to fetch metadata, the IP is outputted the IP. Now I just grep for that IP (remembering to double-escape the dots because we're in JSON).
 
