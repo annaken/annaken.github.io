@@ -134,8 +134,8 @@ That's it - if all the tests pass, then the AMI is built and available for use v
 
 ### References:
 
-    https://stelligent.com/2016/08/17/introduction-to-serverspec-what-is-serverspec-and-how-do-we-use-it-at-stelligent-part1/
-    https://www.morethanseven.net/2014/01/01/testing-packer-created-images-with-serverspec/
-    http://code.hootsuite.com/build-test-and-automate-server-image-creation/
-    https://github.com/hashicorp/packer/pull/1823
-    https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html
+* https://stelligent.com/2016/08/17/introduction-to-serverspec-what-is-serverspec-and-how-do-we-use-it-at-stelligent-part1/
+* https://www.morethanseven.net/2014/01/01/testing-packer-created-images-with-serverspec/
+* http://code.hootsuite.com/build-test-and-automate-server-image-creation/
+* https://github.com/hashicorp/packer/pull/1823
+* https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html
