@@ -2,7 +2,7 @@
 layout: post
 title:  "Testing Packer builds with Serverspec"
 tags:   [technical, testing, packer, serverspec, aws]
-date:   2017-05-10
+date:   2017-05-11
 comments: true
 ---
 
