@@ -26,16 +26,16 @@ That way all of our produced AMIs would be tested and verified.
 
 Packer offers a way to poke shell commands into the AMI as part of the 'provisioners' stage, and this can be used to kick off the testing like:
 
-  "provisioners": [
-    ...
-    { "type": "shell",
-      "inline": [
-        "sudo apt-get install -y ruby",
-        "sudo gem install serverspec",
-        "cd /tmp/tests",
-        "rake spec TARGET_HOST=localhost"
-      ]
-    }
+    "provisioners": [
+      ...
+      { "type": "shell",
+        "inline": [
+          "sudo apt-get install -y ruby",
+          "sudo gem install serverspec",
+          "cd /tmp/tests",
+          "rake spec TARGET_HOST=localhost"
+        ]
+      }
 
 However, one of the nice things about Serverspec is that it doesn't require anything to be installed on the target host. Running tests like this means we have to install ruby and serverspec on our shiny new server and I wasn't really down with that.
 
