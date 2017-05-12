@@ -44,7 +44,7 @@ owner:
   google_plus:   https://plus.google.com/u/0/+AnnaKennedy
 
 # Analytics and webmaster tools stuff goes here
-google_analytics:
+google_analytics: UA-99053235-1
 google_verify: m9WsXe8Lv71_3rWe70CKkgQtAGsKn9U3C1vD9jl-99U
 # https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
 bing_verify:
@@ -81,7 +81,7 @@ kramdown:
   use_coderay: false
 
   coderay:
-    coderay_line_numbers: 
+    coderay_line_numbers:
     coderay_line_numbers_start: 1
     coderay_tab_width: 4
     coderay_bold_every: 10
