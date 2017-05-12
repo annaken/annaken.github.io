@@ -63,7 +63,7 @@ Let me talk you through those commands.
 
 First, I should explain that when I call Packer, I do
 
-    packer build -machine-readable myami.json | tee build.log
+    packer build myami.json | tee build.log
 
 so that the Packer output gets formatted and sent to a build log. This is going to let me call commands and read back the results.
 
