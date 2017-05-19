@@ -125,8 +125,8 @@ If I get any non-zero number of failures reported, the build will abort.
 I had to plant keys on the source instance so that I could run Serverspec against it; I remove these as a final step:
 
     {
-      "type": "shell-local",
-      "command": "rm -rf /home/ubuntu/"
+      "type": "shell",
+      "inline": [ "sudo rm -rf /home/ubuntu/" ]
     }
 
 That's it - if all the tests pass, then the AMI is built and available for use very shortly.
