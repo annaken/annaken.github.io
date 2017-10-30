@@ -228,7 +228,7 @@ html, body, .summer-post-container, .summer-post-header {
       font-size: 50%; }
     .post-template button.trigger::before {
       display: none; } }
-  .post-template .intro-effect-sliced:not(.notrans) .bg-img,
+/*  .post-template .intro-effect-sliced:not(.notrans) .bg-img,
   .post-template .intro-effect-sliced:not(.notrans) .summer-post-title {
     -webkit-transition-property: -webkit-transform;
     transition-property: transform; }
@@ -295,6 +295,7 @@ html, body, .summer-post-container, .summer-post-header {
   .post-template .intro-effect-sliced.modify:not(.notrans) .summer-post-title {
     -webkit-transition-delay: 0.15s;
     transition-delay: 0.15s; }
+*/
 
 .summer-post-share {
   font-size: 1.875rem;
