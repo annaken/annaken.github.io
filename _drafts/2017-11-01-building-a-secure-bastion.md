@@ -4,18 +4,30 @@
 >    1. A projecting part of a fortification
 >    2. A special purpose computer on a network specifically designed and configured to withstand attacks
 
-If you deploy servers to a private network, then you need to connect to them either through a VPN or by ssh'ing through a bastion host (jump box). This massively reduces your attack surface - but you need to make sure that the server exposed to the internet is as secure as you can make it.
-
 ![Bastion](/assets/img/bastion.jpg)
+
+If you deploy servers to a private network, then you also need a way to connect to them. The two most common ways methods are to use a VPN, or to ssh through a bastion host (also known as a jump box). Shielding services this massively reduces your attack surface, but you need to make sure that the server exposed to the internet is as secure as you can make it.
+
+Here at Telenor Digital we use multiple federated AWS accounts, and we wanted to avoid having to set up a complex system of VPNs. Additionally, we wanted to be able to connect to any account from anywhere, not just from designated ip ranges. Deploying a bastion host to each account would allow us to connect easily to instances via [sshuttle](https://github.com/apenwarr/sshuttle).
+
+This is where it got... interesting. We use Amazon AWS, and at time of writing there was no designated bastion host instance type available. Nor could I find any pre-built bastions. Or even any of information about how other people were solving this problem. I seemed to have stumbled into the land of [xkcd 979](https://xkcd.com/979). And so under the banner of "I'll build it myself, how hard can it be" I set sail into uncharted territory.
+
+## Where do I start
+
+Our technology stack uses exclusively Ubuntu, and we wanted the bastion to be compatible with the various services we already deploy, such as Consul, Ansible, and Filebeat. Additionally, I feel a lot more comfortable messing with Ubuntu than I would do with other OSs. Had it not been for these constraints, there might be better OSs to start with, such as Alpine Linux.
+
+Thus the decision was taken to base the bastion on a minimal Ubuntu install, strip out as many packages as possible, add some extra security, and make a golden image bastion AMI.
+
+
+## What does secure mean?
 
 My version of secure is:
 
 1. Only authorised users can ssh into the bastion
 2. The bastion is useless for anything BUT ssh'ing through
 
-Disclaimer: the technology stack we use here at Telenor Digital influenced some design decisions here. Namely, we run everything in AWS, and we use Ubuntu everywhere. Additionally, we need the bastion to be able to run filebeat, Consul, Ansible and sshuttle. Therefore I didn't try to build an image from scratch, nor was it practical for me at this time to try to use a non-Ubuntu distro.
 
-My rough plan was: start with a minimal Ubuntu server AMI, strip out as many packages as possible, add some extra security, and make a golden image bastion AMI.
+## The starting point: Ubuntu minimal-server
 
 A quick glance at `dpkg-query -W` shows over 2000 packages pre-installed in Ubuntu minimal-server.
 
