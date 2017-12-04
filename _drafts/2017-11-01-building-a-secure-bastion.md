@@ -10,47 +10,45 @@ If you deploy servers to a private network, then you also need a way to connect 
 
 Here at Telenor Digital we use multiple federated AWS accounts, and we wanted to avoid having to set up a complex system of VPNs. Additionally, we wanted to be able to connect to any account from anywhere, not just from designated ip ranges. Deploying a bastion host to each account would allow us to connect easily to instances via [sshuttle](https://github.com/apenwarr/sshuttle).
 
-This is where it got... interesting. We use Amazon AWS, and at time of writing there was no designated bastion host instance type available. Nor could I find any pre-built bastions. Or even any of information about how other people were solving this problem. I seemed to have stumbled into the land of [xkcd 979](https://xkcd.com/979). And so under the banner of "I'll build it myself, how hard can it be" I set sail into uncharted territory.
-
-## Where do I start
-
-Our technology stack uses exclusively Ubuntu, and we wanted the bastion to be compatible with the various services we already deploy, such as Consul, Ansible, and Filebeat. Additionally, I feel a lot more comfortable messing with Ubuntu than I would do with other OSs. Had it not been for these constraints, there might be better OSs to start with, such as Alpine Linux.
-
-Thus the decision was taken to base the bastion on a minimal Ubuntu install, strip out as many packages as possible, add some extra security, and make a golden image bastion AMI.
-
-
-## What does secure mean?
-
-My version of secure is:
+This is where it got... interesting. We use Amazon AWS, and at time of writing there was no designated bastion host instance type available. Nor could I find any pre-built bastions. Or even any of information about how other people were solving this problem.
+I knew that I wanted a secure bastion such that:
 
 1. Only authorised users can ssh into the bastion
 2. The bastion is useless for anything BUT ssh'ing through
 
+And so under the banner of "I'll build it myself, how hard can it be" I set sail into uncharted territory.
+
+## Disclaimer: constraint and pre-conditions
+
+Our technology stack uses exclusively Ubuntu, and we wanted the bastion to be compatible with the various services we already deploy, such as Consul, Ansible, and Filebeat. Additionally, I personally have a lot more experience with Ubuntu than I do with any other OS.
+Thus the decision was taken to base the bastion on a minimal Ubuntu install, strip out as many packages as possible, add some extra security, and make a golden image bastion AMI.
+Had it not been for these constraints, there might be better OSs to start with, such as Alpine Linux.
 
 ## The starting point: Ubuntu minimal-server
 
-A quick glance at `dpkg-query -W` shows over 2000 packages pre-installed in Ubuntu minimal-server.
+First point of call: what packages are pre-installed in an Ubuntu minimal-server?
+Inspection via `$apt list --installed` or `$ dpkg-query -W` showed over 2000 packages, and of those I was surprised how many I'd never heard of.
+Of the ones I had heard of, I was further surprised how many seemed, well, superfluous.
+I spent half a day trying to figure out what all the mystery packages were before I had the bright idea of leveraging Ubuntu's package rating system: all packages are labelled as one of: important, required, standard, optional, or extra
 
 ```
-$ dpkg-query -W
-a11y-profile-manager-indicator  0.1.10-0ubuntu3
-accountsservice 0.6.40-2ubuntu11.3
-acl     2.2.52-3
-acpi-support    0.142
-acpid   1:2.0.26-1ubuntu2
-activity-log-manager    0.9.7-0ubuntu23.16.04.1
-adduser 3.113+nmu3ubuntu4
-adium-theme-ubuntu      0.3.4-0ubuntu1.1
-adwaita-icon-theme      3.18.0-2ubuntu3.1
+$ dpkg-query -Wf '${Package;-40}${Priority}\n'
+apt                             important
+adduser                         required
+at                              standard
+a11y-profile-manager-indicator  optional
+adium-theme-ubuntu              extra
 ```
+# Remove optional and extra packages
 
-That's really quite a lot, and even though I thought I knew something about Ubuntu, I don't know what most of these packages are. Still, on closer inspection, Ubuntu marks all of the packages as one of: important, required, standard, optional, or extra. Those optional and extra packages sound very non-essential, I'm sure I can rip those out with a nice one-liner.
+Those optional and extra packages sounded very non-essential. I was pretty sure I can rip those out with a nice one-liner and be done.
 
 ```
 dpkg-query -Wf '${Package;-40}${Priority}\n' | awk '$2 ~ /optional|extra/ { print $1 }' | xargs -I % sudo apt-get -y purge %
 ```
 
-Yeah... don't do that. All sorts of surprising packages are marked optional/extra, including:
+Turns out this was not my best ever idea.
+All sorts of surprising packages are marked optional/extra and were thus unceremoniously removed, including:
 
 * cloud-init
 * grub
@@ -59,9 +57,15 @@ Yeah... don't do that. All sorts of surprising packages are marked optional/extr
 * resolvconf
 * ubuntu-server (meta-package)
 
-On every run I got an unstable and/or unusable image. Interestingly it broke in a different way each time.
+It doesn't take a genius to realise that removing grub, open-ssh or resolvconf is colossally ill-advised, but even after I tried not removing these but uninstalling the rest I had no luck.
+On every run I got an unstable and/or unusable image, often not booting at all.
+Interestingly it broke in a different way each time, possibly something to do with how fast it was uprooting various dependencies before it got to an unbootable state.
+After a good day of experimenting with package-removal lists and getting apparently non-deterministic results, it was time for a new strategy.
 
-Ok so maybe removing lots of packages blindly isn't the best of ideas. Maybe I look through the package list and remove the ones that look most 'useful' and remove them.
+# Remove a selected list of packages
+
+I revised my plan somewhat in the realisation that maybe removing lots of packages blindly isn't the best of ideas.
+Maybe I could look through the package list and remove the ones that look most 'useful' and remove them.
 
 Package name | Ok to remove?
 ------------------------------
