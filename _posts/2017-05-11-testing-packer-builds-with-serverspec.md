@@ -67,13 +67,13 @@ First, I should explain that when I call Packer, I do
 
 so that the Packer output gets formatted and sent to a build log. This is going to let me call commands and read back the results.
 
-### curl http://169.254.169.254/latest/meta-data/local-ipv4
+* __curl http://169.254.169.254/latest/meta-data/local-ipv4__
 
 Amazon provides a way to find out metadata about an instance from within the instance, by [curling a special endpoint](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html).
 
 By doing this call from within the instance, I get the IP printed out to build.log, which I'll use in the next step.
 
-### export SSH_USER=ubuntu
+* __export SSH_USER=ubuntu__
 
 Serverspec needs to ssh into the instance to run the tests. To this end, in the "builders" section of the Packer json file, I specified a keypair (which was already planted on AWS) like:
 
@@ -81,15 +81,15 @@ Serverspec needs to ssh into the instance to run the tests. To this end, in the 
       "ssh_keypair_name": "ubuntu-deploy",
       "ssh_private_key_file": "/home/annaken/.ssh/ubuntu-deploy",
 
-### cp -r ~/serverspec/* .
+* __cp -r ~/serverspec/* .__
 
 Yeah, so rake only runs if you're standing in the same directory as the Rakefile. There are other ways around this but just copying the contents of my whole servrspec dir was the easiest fix for me.
 
-### egrep -m1 -o '[0-9]{1,3}\\\.[0-9]{1,3}\\\.[0-9]{1,3}\\\.[0-9]{1,3}' build.log
+* __egrep -m1 -o '[0-9]{1,3}\\\.[0-9]{1,3}\\\.[0-9]{1,3}\\\.[0-9]{1,3}' build.log__
 
 Having run the curl to fetch metadata, the IP is outputted the IP. Now I just grep for that IP (remembering to double-escape the dots because we're in JSON).
 
-### xargs -I ip rake spec TARGET_HOST=ip"
+* __xargs -I ip rake spec TARGET_HOST=ip"__
 
 I use xargs to pass the instance IP through to rake, which runs my set of serverspec tests against the instance at the given IP.
 
