@@ -131,6 +131,9 @@ I had to plant keys on the source instance so that I could run Serverspec agains
 
 That's it - if all the tests pass, then the AMI is built and available for use very shortly.
 
+## Full packer file for reference
+
+    https://github.com/annaken/amibuilds/blob/master/packer-serverspec.json
 
 ### References:
 
