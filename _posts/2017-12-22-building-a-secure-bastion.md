@@ -6,8 +6,6 @@ date:   2017-12-22
 comments: true
 ---
 
-# Building a secure bastion host, or, 50 ways to kill your server
-
 >  Bastion (noun)
 >    1. A projecting part of a fortification
 >    2. A special purpose computer on a network specifically designed and configured to withstand attacks
@@ -74,23 +72,23 @@ It doesn't take a genius to realise that removing grub, open-ssh or resolvconf i
 
 I revised my plan somewhat in the realisation that maybe blindly removing lots of packages wasn't the best of ideas. Maybe I could look through the package list and remove the ones that seemed the most 'useful' and remove them. Some obvious candidates for removal were the various scripting languages, plus tools like curl and net-tools. I was pretty sure these were just peripherals to a minimal server.
 
-Package name | Ok to remove? | Dependency
-------------------------------
-curl | no | Consul
-ed | yes
-ftp | yes
-gawk | yes
-nano | yes
-net-tools | no | sshuttle
-perl | no | ssh
-python 2.7 | no | Ansible
-python 3 | no | AWS instance checks
-rsync | yes
-screen | yes
-tar | no | Ansible
-tmux | yes
-vim | yes
-wget | yes
+| Package name | Ok to remove? | Dependency |
+| -------------|---------------|------------|
+|curl | no | Consul|
+|ed | yes|
+|ftp | yes|
+|gawk | yes|
+|nano | yes|
+|net-tools | no | sshuttle|
+|perl | no | ssh|
+|python 2.7 | no | Ansible|
+|python 3 | no | AWS instance checks|
+|rsync | yes|
+|screen | yes|
+|tar | no | Ansible|
+|tmux | yes|
+|vim | yes|
+|wget | yes|
 
 It turns out I was incorrect. Due to the various restrictions placed upon the system because we use Consul, sshuttle, Ansible and AWS, about half of my hitlist was unremovable.
 
@@ -135,18 +133,18 @@ I still lie awake in bed sometimes and try to work out how to build a bastion fr
 
 I presented this work at DevOpsDays Oslo 2017, see the video or slides here:
 
-  https://www.youtube.com/watch?v=Kd4OMVYTwnY
-  https://www.slideshare.net/AnnaKennedy11/building-a-secure-bastion-or-50-ways-to-kill-your-server-81551575
+    [https://www.youtube.com/watch?v=Kd4OMVYTwnYa]
+    [https://www.slideshare.net/AnnaKennedy11/building-a-secure-bastion-or-50-ways-to-kill-your-server-81551575]
 
 This post was first published at Sysadvent 2017:
 
-  http://sysadvent.blogspot.no/2017/12/day-22-building-secure-bastion-host-or.html
+    [http://sysadvent.blogspot.no/2017/12/day-22-building-secure-bastion-host-or.html]
 
 ## References
 
-  https://www.cyberciti.biz/faq/linux-bastion-host/
-  https://askubuntu.com/questions/79665/keep-only-essential-packages
-  http://docs.aws.amazon.com/quickstart/latest/linux-bastion/architecture.html
-  http://annaken.github.io/testing-packer-builds-with-serverspec
+    [https://www.cyberciti.biz/faq/linux-bastion-host]
+    [https://askubuntu.com/questions/79665/keep-only-essential-packages]
+    [http://docs.aws.amazon.com/quickstart/latest/linux-bastion/architecture.html]
+    [http://annaken.github.io/testing-packer-builds-with-serverspec]
 
 
