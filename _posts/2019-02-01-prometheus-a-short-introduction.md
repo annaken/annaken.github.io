@@ -21,7 +21,7 @@ The folks at Google created some nice tooling, Borg for cluster scheduling and B
 
 The basic architecture is that each target exposes its metrics at a http /metrics endpoint, and Prometheus scrapes the target endpoints, storing the data in its database.
 
-![Endpoint and target](assets/img/metrics_endpoint.png)
+![Endpoint](assets/img/metrics_endpoint.png)
 
 # Exporters
 
