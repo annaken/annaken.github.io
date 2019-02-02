@@ -31,17 +31,13 @@ Something I really like about Prometheus is the exporters. There's a [huge amoun
 
 The underlying data model Prometheus uses is a *timeseries*, that is, whatever data you collect, time will be one of the two dimensions. Time is always represented on the x-axis of our graphs. There are a few basic data types that Prometheus collects:
 
-* Counter
-** a number that can only go up, eg number_dns_lookups 547
+* Counter: a number that can only go up, eg number_dns_lookups 547
 
-* Gauge
-** a number that can go up or down, eg memory_free 1.54e+08
+* Gauge: a number that can go up or down, eg memory_free 1.54e+08
 
-* Histogram
-** observations sampled in buckets request_duration{le="0.1"} 8
+* Histogram: observations sampled in buckets request_duration{le="0.1"} 8
 
-* Summary
-** quartiles, sum and count, eg request_duration{quantile="0.5"} 216
+* Summary : quartiles, sum and count, eg request_duration{quantile="0.5"} 216
 
 # Data format
 
