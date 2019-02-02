@@ -35,7 +35,7 @@ The underlying data model Prometheus uses is a *timeseries*, that is, whatever d
 
 * Gauge: a number that can go up or down, eg memory_free 1.54e+08
 
-* Histogram: observations sampled in buckets request_duration{le="0.1"} 8
+* Histogram: observations sampled in buckets, eg request_duration{le="0.1"} 8
 
 * Summary : quartiles, sum and count, eg request_duration{quantile="0.5"} 216
 
