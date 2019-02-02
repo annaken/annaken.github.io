@@ -74,7 +74,8 @@ We compare the total number of healthy nodes in Consul right now with how many h
 
 We can build up a query in a few steps from the metrics available:
 
-1. Let's start with looking at **node_memory_MemFree**
+1. Let's start with looking at
+    **node_memory_MemFree**
 ![memFree](assets/img/memfree.png)
 
 2. That's an absolute number, but more useful would be to see that as a ratio of
