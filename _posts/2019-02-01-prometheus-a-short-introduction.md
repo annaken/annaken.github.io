@@ -31,10 +31,10 @@ Something I really like about Prometheus is the exporters. There's a [huge amoun
 
 The underlying data model Prometheus uses is a *timeseries*, that is, whatever data you collect, time will be one of the two dimensions. Time is always represented on the x-axis of our graphs. There are a few basic data types that Prometheus collects:
 
-| counter | a number that can only go up |  number_dns_lookups 547 |
-| gauge   | a number that can go up or down | memory_free 1.54e+08 |
-| histogram | observations sampled in buckets | request_duration{le="0.1"} 8 |
-| summary | quartiles, sum and count | request_duration{quantile="0.5"} 216 |
+| counter | a number that can only go up |  number_dns_lookups | 547 |
+| gauge   | a number that can go up or down | memory_free | 1.54e+08 |
+| histogram | observations sampled in buckets | request_duration{le="0.1"} | 8 |
+| summary | quartiles, sum and count | request_duration{quantile="0.5"} | 216 |
 
 # Data format
 
@@ -75,23 +75,23 @@ We compare the total number of healthy nodes in Consul right now with how many h
 We can build up a query in a few steps from the metrics available:
 
 1. Let's start with looking at **node_memory_MemFree**
-![memFree]((assets/img/memfree.png)
+![memFree](assets/img/memfree.png)
 
 2. That's an absolute number, but more useful would be to see that as a ratio of
     **node_memory_MemFree/node_memory_MemTotal**
-![memFreeRatio]((assets/img/memfree_memtotal.png)
+![memFreeRatio](assets/img/memfree_memtotal.png)
 
 3. Now to get that as a percent we do
     **(node_memory_MemFree/node_memory_MemTotal)*100**
-![memFreePercent]((assets/img/memfree_percent.png)
+![memFreePercent](assets/img/memfree_percent.png)
 
 4. And to see how much memory we're using, we do
     **100-((node_memory_MemFree/node_memory_MemTotal)*100)**
-![memUsedPercent]((assets/img/memused_percent.png)
+![memUsedPercent](assets/img/memused_percent.png)
 
 5. If we decide to alert when the amount of memory used goes above 90%, we can see when that will happen doing
     **100-((node_memory_MemFree/node_memory_MemTotal)*100) > 90**
-![memUsedAlert]((assets/img/memused_alert.png)
+![memUsedAlert](assets/img/memused_alert.png)
 
 
 **Will we run out of disk space in the next 24h?**
