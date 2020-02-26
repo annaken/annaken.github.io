@@ -1,87 +1,39 @@
-title:            annaken
-description:      annaken
-name:             Anna Kennedy
-github_username:  annaken
+title: "annaken"
+author: "Anna Kennedy"
+description: ""
+permalink: /:title/
+lang: "en"
+excerpt_separator: "\n\n\n"
+date_format: "%B %d, %Y"
+url: "http://annaken.github.io"
 
-logo:
-disqus_shortname: annaken
+# Layout
 
-# Assign a default image for your site's header and footer
-default_bg:       some-image.jpg
-search:           true
-share:            true
+sidebar: true                # show a sidebar instead of the usual header
+show_excerpts: false         # show article excerpts on the home page
+show_related: true           # show the previous and next links after every post
+show_description: true       # show the site description in the sidebar
+show_title: false            # always keep the site title visible
 
-# Read Time is a calculator tp provide post read-time based on word count. Usage is recommended.
-readtime:         true
+# Styling
 
-# Turn on or off the fin animations in the header and footer
-animated_fins:    false
+dark_header: false           # always keep the header dark
+minimal: false               # use simpler style
 
-# Specify the fin color in RGB value
-fin_color:        "255,255,255"
+# Menu
 
-# Change url to your domain. Leave localhost server or blank when working locally.
-url:              "http://annaken.github.io"
+navigation:
+  - {file: "index.html", icon: home}
+  - {file: "README.md", icon: address-card}
 
+external:                    # see http://fontawesome.com/icons
+  - {title: Github, icon: github, url: "https://github.com/annaken"}
+  - {title: Subscribe, icon: rss, url: "/feed.xml"}
 
-# Owner/author information
-owner:
-  name:           Anna Kennedy
-#  avatar:         your-photo.jpg
-#  email:          your@email.com
-  # Use the coder's toolbox at http://coderstoolbox.net/string/#!encoding=xml&action=encode&charset=us_ascii to encode your description into XML string
-  description:    Infrastructure engineer and professional chaos monkey
+comments:
+  disqus: "annaken"          # see https://disqus.com/
+#  isso: ""                  # see https://posativ.org/isso/
 
-  # Social networking links used in footer. Update and remove as you like.
-  twitter:  anna_ken_
-  facebook:
-  github:   annaken
-  linkedin:
-  instagram:
-  tumblr:
-  hmfaysalsocial:
-  # For Google Authorship https://plus.google.com/authorship "http://plus.google.com/123123123123132123"
-  google_plus:   https://plus.google.com/u/0/+AnnaKennedy
+plugins:
+ - jekyll-feed
 
-# Analytics and webmaster tools stuff goes here
-google_analytics: UA-99053235-1
-google_verify: m9WsXe8Lv71_3rWe70CKkgQtAGsKn9U3C1vD9jl-99U
-# https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
-bing_verify:
-
-# Links to include in top navigation
-# For external links add external: true
-links:
-  - title: Home
-    url: /
-    external: false
-    icon: home
-  - title: Tags
-    url: /tags
-  - title: All posts
-    url: /allposts
-
-# http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-timezone:    Europe/Oslo
-future:      true
-pygments:
-highlighter: rouge
-markdown:    kramdown
-paginate:    5
-paginate_path: "page:num"
-
-# https://github.com/mojombo/jekyll/wiki/Permalinks
-permalink:   /:title
-
-kramdown:
-  auto_ids: true
-  footnote_nr: 1
-  entity_output: as_char
-  toc_levels: 1..6
-  use_coderay: false
-
-  coderay:
-    coderay_line_numbers:
-    coderay_line_numbers_start: 1
-    coderay_tab_width: 4
-    coderay_bold_every: 10

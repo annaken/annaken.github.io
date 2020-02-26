@@ -1,72 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-{% include head.html %}
-</head>
-<body class="post-template" itemscope itemtype="http://schema.org/WebPage">  
+---
+layout: default
+---
 
-<!--main id="summer-post-container" class="summer-post-container intro-effect-sliced" role="main"-->
-<main id="summer-post-container" class="summer-post-container" role="main">
-   <header class="summer-post-header">
-      <!--div class="bg-img"></div-->
-        <div class="summer-post-menu-header">
-                    <!--a class="summer-blog-logo" href="{{ site.url }}">
-                        <img src="{{ site.url }}/images/{{ site.logo }}" alt="Blog Logo" />
-                    </a-->
+<article>
+  {% include meta.html post=page %}
+  {{ content }}
+  {% if page.comments != false and site.comments.isso or site.comments.disqus %}
+    <hr>
+    {% if site.comments.isso %}<div id="isso-thread"></div>{% endif %}
+    {% if site.comments.disqus %}<div id="disqus_thread"></div>{% endif %}
+    <noscript>Please enable JavaScript to view comments.</noscript>
+  {% endif %}
+</article>
 
-          <div class="summer-blog-menu">
-            <div class="summer-mobile-menu show-for-small">
-              <a href="#"><i class="fa fa-bars"></i></a>
-            </div>
-            <ul class="summer-menu">
-        <li class="summer-mobile-close-btn show-for-small text-right">
-            <a href="#"><i class="fa fa-times"></i></a>
-        </li>
-            {% for link in site.links %}
-            <li>{% if link.external %}
-                    <a href="{{ link.url }}">{{ link.title }}</a>
-                {% else %}
-                    <a href="{{ site.url }}{{ link.url }}">{{ link.title }}</a>
-                {% endif %} </li>
-            {% endfor %}
-           <li><a href="{{ site.url }}/feed.xml" title="Atom/RSS feed"><i class="icon-rss"></i> Feed</a></li>
-    </ul>
-
-</div>
-            </div>
-            <div class="summer-post-title bg-check">
-                <h1>{{ page.title }}</h1>
-                <p>by <strong>{{ site.owner.name }}</strong> &#8212; {% assign tagsize = page.tags.size %}{% if tagsize != 0 %}on {% for tag in page.tags %}<a href="{{ site.url }}/tags#{{ tag | cgi_encode }}" data-toggle="tooltip" title="Posts tagged with {{ tag }}" rel="tag">{{ tag }}</a>{% unless forloop.last %}&nbsp;&comma;&nbsp;{% endunless %}{% endfor %}{% endif %} <strong><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d %b %Y" }}</time></strong></p>
-            </div>
-            <!--div class="bg-img"></div-->
-        </header>
-        <!--button class="trigger bg-check" data-info="Read more"><span>Trigger</span></button-->
-        {% if page.imagefeature %}
-          <!--img src="{{ site.url }}/images/{{ page.imagefeature }}" alt="cover-image" /-->
-        {% endif %}
-          <article class="summer-post-content post">
-            <div>{{ content }}
-            </div>
-        </article>
-        <div class="cf"></div>
-{% if site.share %}{% include share.html %}{% endif %}
-        <div class="cf"></div>
-
-{% include signoff.html %}
-        <div class="cf"></div>
-{% if site.disqus_shortname and page.comments == true %}
-        <section class="summer-disqus row">
-    <div class="small-12 columns">
-        <h1 class="summer-comments-header">Comments</h1>
-        <div id="disqus_thread"></div>
-        {% include disqus_comments.html %}
-    </div>
-</section>
+{% if site.show_related %}
+  <footer class="related">
+    <div class="previous">{% if page.previous.url %}<span>Previous Post</span><a href="{{ page.previous.url | relative_url }}">{{ page.previous.title }}</a>{% endif %}</div>
+    <div class="next">{% if page.next.url %}<span>Next Post</span><a href="{{ page.next.url | relative_url }}">{{ page.next.title }}</a>{% endif %}</div>
+  </footer>
 {% endif %}
-        <div class="cf"></div>
-
-    {% include footer.html %} 
-</main>    
-{% include scripts.html %} 
-</body>
-</html>
