@@ -9,7 +9,7 @@ comments: true
 This is a more-or-less transcript of a talk I recently gave at our /dev/øl conference at RiksTV.
 The context was to talk a bit about some of the great features of Prometheus, and hopefully persuade my colleagues that we should move away from Datadog.
 
-![Prometheus](https://raw.githubusercontent.com/sbd/sbd.github.io/master/assets/images/prom_intro.png)
+![Prometheus](/assets/images/prom_intro.png)
 
 [Prometheus](https://prometheus.io/) is an open-source monitoring system that gathers metrics from targets, stores the data in its database, and makes that data available for visualisation and statistical operations. At RiksTV we currently use Datadog, but I prefer Prometheus because it has better statistics, better exporters, and more flexibility. And because it's open source there's no license fee so we'd be able to install it in test as well as prod - right now we have no monitoring in the dev account, and I worry that we miss some insights and warning by not seeing any alerts before we deploy to production.
 
@@ -21,7 +21,7 @@ The folks at Google created some nice tooling, Borg for cluster scheduling and B
 
 The basic architecture is that each target exposes its metrics at a http /metrics endpoint, and Prometheus scrapes the target endpoints, storing the data in its database.
 
-![Endpoint](https://raw.githubusercontent.com/sbd/sbd.github.io/master/assets/images/prom_intro.png)
+![Endpoint](/assets/images/prom_intro.png)
 
 
 # Exporters
@@ -80,23 +80,23 @@ We can build up a query in a few steps from the metrics available:
 
 1. Let's start with looking at
     **node_memory_MemFree**
-![memFree](https://raw.githubusercontent.com/sbd/sbd.github.io/master/assets/images/memfree.png)
+![memFree](/assets/images/memfree.png)
 
 2. That's an absolute number, but more useful would be to see that as a ratio of
     **node_memory_MemFree/node_memory_MemTotal**
-![memFreeRatio](https://raw.githubusercontent.com/sbd/sbd.github.io/master/assets/images/memfree_memtotal.png)
+![memFreeRatio](/assets/images/memfree_memtotal.png)
 
 3. Now to get that as a percent we do
     **(node_memory_MemFree/node_memory_MemTotal)*100**
-![memFreePercent](https://raw.githubusercontent.com/sbd/sbd.github.io/master/assets/images/memfree_percent.png)
+![memFreePercent](/assets/images/memfree_percent.png)
 
 4. And to see how much memory we're using, we do
     **100-((node_memory_MemFree/node_memory_MemTotal)*100)**
-![memUsedPercent](https://raw.githubusercontent.com/sbd/sbd.github.io/master/assets/images/memused_percent.png)
+![memUsedPercent](/assets/images/memused_percent.png)
 
 5. If we decide to alert when the amount of memory used goes above 90%, we can see when that will happen doing
     **100-((node_memory_MemFree/node_memory_MemTotal)*100) > 90**
-![memUsedAlert](https://raw.githubusercontent.com/sbd/sbd.github.io/master/assets/images/memused_alert.png)
+![memUsedAlert](/assets/images/memused_alert.png)
 
 
 **Will we run out of disk space in the next 24h?**
