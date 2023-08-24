@@ -17,8 +17,8 @@ As we dug down into the documentation, we realised that our mental model of how 
 
 As it turns out, there is a lot of interaction between the controllers, and the discovery of a new image or a new git commit initates a workflow that ends up in a kustomize controller reconciliation:
 
-    The image-reflector controller polls the registry for new images every minute, but upon discovery of a new image it notifies the image-automation controller to write the new image tag to git.
-    The source controller polls github for new commits, but when a new commit is discovered the it notifies the kustomize controller to start a new reconciliation.
+* The image-reflector controller polls the registry for new images every minute, but upon discovery of a new image it notifies the image-automation controller to write the new image tag to git.
+* The source controller polls github for new commits, but when a new commit is discovered the it notifies the kustomize controller to start a new reconciliation.
 
 ![Correct_model](/assets/images/flux2.png)
 *Correct model - communication between controllers*
