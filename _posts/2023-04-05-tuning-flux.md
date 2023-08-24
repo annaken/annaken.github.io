@@ -13,6 +13,7 @@ Last year we upgraded from flux v1 to v2, flux v2 being a full rewrite, splittin
 As we dug down into the documentation, we realised that our mental model of how the controllers worked wasn't the whole picture. We'd been thinking about the four main controllers (image-reflector, image-automation, source and kustomize) as four totally separate entities, and accordingly set their "doing-stuff" intervals very low (typically ~1 min) thinking that that would mean changes were deployed quickly.
 
 ![Incorrect_model](/assets/images/flux1.png)
+
 *Incorrect model - no communication between controllers*
 
 As it turns out, there is a lot of interaction between the controllers, and the discovery of a new image or a new git commit initates a workflow that ends up in a kustomize controller reconciliation:
@@ -21,11 +22,13 @@ As it turns out, there is a lot of interaction between the controllers, and the 
 * The source controller polls github for new commits, but when a new commit is discovered the it notifies the kustomize controller to start a new reconciliation.
 
 ![Correct_model](/assets/images/flux2.png)
+
 *Correct model - communication between controllers*
 
 To improve performance further, we added a webhook so that a new commit to github would be pushed to the source controller.
 
 ![Improved_model](/assets/images/flux3.png)
+
 *Improved model - webhook initiates reconciliation*
 
 Now we only need the image-reflector controller to poll the registry every minute; the other three controllers are event-driven, not interval driven.
@@ -68,4 +71,4 @@ That is, ignore all yaml except what is directly applicable to this cluster.
 
 The net result of these changes was that we went from an average of 10-20 minutes from a new image arriving in the registry to being deployed, down to 1-2 minutes.
 
-Note: we used [https://fluxcd.io/flux/guides/monitoring/#flux-dashboards] for excellent insights into how flux was performing in the clusters.
+Note: we used https://fluxcd.io/flux/guides/monitoring/#flux-dashboards for excellent insights into how flux was performing in the clusters.
