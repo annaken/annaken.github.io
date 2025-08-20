@@ -127,3 +127,4 @@ The privileged pod on each node would write a new config file to `/etc/systemd/r
 
 A future solution might be to implement some kind of local DNS server/cache on each node, but for now we’ll settle for a working system and a huge increase in knowledge about the inner workings of many of our components.
 
+Authors: <a href="https://www.linkedin.com/in/annaken">Anna Kennedy</a>, <a href="https://www.linkedin.com/in/hihrig/">Holger Ihrig</a>, <a href="https://www.linkedin.com/in/mattlong/">Matt Long</a>, <a href="https://www.linkedin.com/in/yangrunenberger/">Yan Grunenberger</a>
