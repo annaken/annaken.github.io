@@ -24,7 +24,7 @@ Deciding whether a piece of software needs a human in the loop depends on factor
 * Degradation - what kind of failure modes can we tolerate?
 * Rollback - can we revert a given change?
 
-There are for sure projects where vibe-coding straight to main is absolutely no problem, and other projects where that is going to get people killed. 
+There are for sure projects where vibe-coding straight to main is absolutely no problem, and other projects where it stands to cause serious harm to someone or their bank account.
 
 Right now on my work slack I see:
 
