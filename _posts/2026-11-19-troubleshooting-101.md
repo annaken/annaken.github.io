@@ -2,7 +2,7 @@
 layout: post
 title:  "System troubleshooting 101"
 tags:   [systems]
-date:   2026-11-18
+date:   2026-11-19
 comments: false
 ---
 
