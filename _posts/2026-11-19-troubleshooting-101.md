@@ -26,7 +26,7 @@ If it never worked, then we’re either talking about a brand-new setup, or a ve
 
 New system troubleshooting is also where it pays off to have a good enough mental model to break the system down into modular, testable components.
 
-If it used to work but now doesn’t, that (usually) means we can narrow the scope considerably.
+If it used to work but now doesn’t, that (usually) means you can narrow the scope considerably.
 
 ## When did the behaviour change? Were there any other changes made at the same time?
 
@@ -38,11 +38,11 @@ Note that some changes cause problems instantly, whereas some move us into an un
 
 ## Is it a problem in all cases?
 
-Do we see problems with 100% of requests, data, interactions etc, or only a small amount? Partial disruption means that we have a working system under some conditions, but not others. Identifying the differences can be very helpful.
+Do you see problems with 100% of requests, data, interactions etc, or only a small amount? Partial disruption means that you have a working system under some conditions, but not others. Identifying the differences can be very helpful.
 
 ## Are there any situations where this does work?
 
-If you can find a parallel situation where the thing does work, then it’s often just playing spot-the-difference between the two systems - can we find a working example in a different environment, region, timezone? With different user activity, load, settings? At a different scale? If there are no problems for some users (eg, admin) then it’s worth investigating authentication and authorisation, however that is configured for your system.
+If you can find a parallel situation where the thing does work, then it’s often just playing spot-the-difference between the two systems - can you find a working example in a different environment, region, timezone? With different user activity, load, settings? At a different scale? If there are no problems for some users (eg, admin) then it’s worth investigating authentication and authorisation, however that is configured for your system.
 
 The more constraints you can compare, the more you can home in on the problem. Be aware that there might be multiple variables at play here. Keep a list as you investigate, and cross off things that cannot be causing the problem, although be prepared to revisit your list as you find out more information. 
 
